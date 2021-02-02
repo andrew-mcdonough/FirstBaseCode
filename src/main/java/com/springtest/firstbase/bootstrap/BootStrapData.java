@@ -7,9 +7,7 @@ import org.springframework.stereotype.Component;
 import com.springtest.firstbase.domain.FBEmployee;
 import com.springtest.firstbase.repositories.EmployeeRepository;
 
-/**
- * Created by jt on 12/23/19.
- */
+
 @Component
 public class BootStrapData implements CommandLineRunner {
 
@@ -29,7 +27,7 @@ public class BootStrapData implements CommandLineRunner {
         employeeFBfirst.setEmail("santa.clause@hotmail.com");
         employeeFBfirst.setTitle("The Boss");
         employeeRepository.save(employeeFBfirst);
-        
+         
         FBEmployee employeeFBsecond = new FBEmployee();
         employeeFBsecond.setName("Rudolf Reindeer");
         employeeFBsecond.setEmail("rudolf.reindeer@homail.com");

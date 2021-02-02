@@ -6,7 +6,7 @@ public class FBEmployee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+     
     public String name;
     public String email;
     public String title;
