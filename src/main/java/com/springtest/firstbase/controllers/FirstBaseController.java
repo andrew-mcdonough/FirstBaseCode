@@ -27,7 +27,7 @@ Logger logger = Logger.getLogger(FirstBaseController.class.getName());
 
     public FirstBaseController(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
-    }
+    } 
     
     @RequestMapping("/firstBase")
     public String firstBase(Model model) {
