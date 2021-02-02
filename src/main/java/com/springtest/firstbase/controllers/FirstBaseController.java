@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.springtest.firstbase.domain.Book;
 import com.springtest.firstbase.domain.FBEmployee;
 import com.springtest.firstbase.pojo.Employee;
 import com.springtest.firstbase.pojo.Greeting;
@@ -31,9 +29,7 @@ Logger logger = Logger.getLogger(FirstBaseController.class.getName());
     
     @RequestMapping("/firstBase")
     public String firstBase(Model model) {
-       
-    	logger.info("get requestsdfsdfs ");
-        model.addAttribute("books", employeeRepository.findAll());
+        model.addAttribute("employees", employeeRepository.findAll());
         FBEmployee employeeFBthird = new FBEmployee();
         model.addAttribute("fbEmployee", employeeFBthird);
         return "firstBase";
@@ -57,7 +53,6 @@ Logger logger = Logger.getLogger(FirstBaseController.class.getName());
     
     @PostMapping("/newemployee")
     public String newEmployeeSubmit(@ModelAttribute FBEmployee fbEmployee, Model model) {
-       logger.info("greeting ANDREW fbEmployee  " + fbEmployee.getTitle());
        FBEmployee employeeFBthird = new FBEmployee();
        ResponseEntity<Employee> newEmployeeList = getEmployeeRandom();
        if(newEmployeeList.getStatusCode() == HttpStatus.OK)
@@ -67,11 +62,10 @@ Logger logger = Logger.getLogger(FirstBaseController.class.getName());
 	       employeeFBthird.setName(employee.getName().first + " " + employee.getName().last);
 	       employeeFBthird.setEmail(employee.getEmail());
 	       employeeFBthird.setTitle(fbEmployee.getTitle());
-	       logger.info("employee submit success " + employee.getEmail()); 
            employeeRepository.save(employeeFBthird);
        }else
        {
-    	   logger.info("employee submit failed");   
+    	   logger.info("ERROR employee submit failed");   
        }
        model.addAttribute("fbEmployee", employeeFBthird);
        return "redirect:/firstBase";
